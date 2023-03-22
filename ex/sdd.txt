@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Mangodb hello</h1>
+    {{message}}
+
+
+{{#if edit_id}}
+{{edit_id}}
+      <h3>Update</h3>
+     <form action="/update_book/{{edit_id}}"  method="post">
+        <label>Name</label><input type="text"  name="title" value={{edit_book.title}}  >
+        <br/>
+        <label>Author</label><input type="text"  name="author"  value={{edit_book.author}}  >
+        <br/>
+        <input type="submit" >
+
+     </form>
+     <br/><br/>
+    
+{{else}}
+
+      <h3>Create</h3>
+     <form action="/store_book" method="post">
+        <label>Name</label><input type="text"  name="title"   >
+        <br/>
+        <label>Author</label><input type="text"  name="author" >
+        <br/>
+        <input type="submit" >
+
+     </form>
+     <br/><br/>
+   
+   {{/if}}
+
+
+      <h3>Read</h3>
+    <ul>
+        {{#each book}}
+        <li>{{this.title}}  -  {{this.author}} - <a href="/?edit_id={{this._id}}">Edit book details</a> : <a href="/?edit_id={{this._id}}">delete</a></li>
+         {{/each}}
+    </ul>
+</body>
+</html>
